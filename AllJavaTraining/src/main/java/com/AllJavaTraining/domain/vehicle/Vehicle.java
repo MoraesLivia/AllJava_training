@@ -1,6 +1,7 @@
 package com.AllJavaTraining.domain.vehicle;
 
 import com.AllJavaTraining.domain.model.Model;
+import com.AllJavaTraining.dtos.VehicleDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,16 @@ public class Vehicle {
     @OneToOne
     @JoinColumn(name = "model_id")
     private Model model;
-    private Integer fabrication_date;
-    private Integer model_date;
-    private Date register_date;
+    private Integer fabricationDate;
+    private Integer modelDate;
+    private Date registerDate;
+
+    public Vehicle(VehicleDTO data){
+        this.chassi = data.chassi();
+        this.model = data.model();
+        this.fabricationDate = data.fabricationDate();
+        this.modelDate = data.modelDate();
+        this.registerDate = data.registerDate();
+
+    }
 }
