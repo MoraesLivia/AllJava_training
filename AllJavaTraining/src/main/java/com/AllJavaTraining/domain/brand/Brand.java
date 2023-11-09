@@ -1,5 +1,6 @@
 package com.AllJavaTraining.domain.brand;
 
+import com.AllJavaTraining.dtos.BrandDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,5 +15,9 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String description;
+    private String brand_description;
+
+    public Brand (BrandDTO data){
+        this.brand_description = data.brand_description();
+    }
 }
