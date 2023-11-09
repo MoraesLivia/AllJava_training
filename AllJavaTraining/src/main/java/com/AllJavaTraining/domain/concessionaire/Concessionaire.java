@@ -1,4 +1,5 @@
 package com.AllJavaTraining.domain.concessionaire;
+import com.AllJavaTraining.dtos.ConcessionaireDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
@@ -16,4 +17,8 @@ public class Concessionaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public Concessionaire(ConcessionaireDTO data){
+        this.name = data.name();
+    }
 }
