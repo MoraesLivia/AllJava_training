@@ -1,5 +1,6 @@
 package com.AllJavaTraining.domain.vehicle;
 
+import com.AllJavaTraining.domain.concessionaire.Concessionaire;
 import com.AllJavaTraining.domain.model.Model;
 import com.AllJavaTraining.dtos.VehicleDTO;
 import jakarta.persistence.*;
@@ -23,16 +24,19 @@ public class Vehicle {
     @OneToOne
     @JoinColumn(name = "model_id")
     private Model model;
-    private Integer fabricationDate;
-    private Integer modelDate;
+    private Integer fabricationYear;
+    private Integer modelYear;
     private Date registerDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "concessionaire_id", referencedColumnName = "id")
+    private Concessionaire concessionaire;
 
     public Vehicle(VehicleDTO data){
         this.chassi = data.chassi();
         this.model = data.model();
-        this.fabricationDate = data.fabricationDate();
-        this.modelDate = data.modelDate();
+        this.fabricationYear = data.fabricationYear();
+        this.modelYear = data.modelYear();
         this.registerDate = data.registerDate();
-
+        this.concessionaire = data.concessionaire();
     }
 }
